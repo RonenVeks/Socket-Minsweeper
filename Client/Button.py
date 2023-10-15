@@ -1,8 +1,17 @@
-from Window import *
+from collections.abc import Callable
+from typing import Optional
+from Window import ClickableObject, window, setup_turtle, Turtle
 from PIL import Image
 from time import sleep
+from dataclasses import dataclass
 
+@dataclass
 class Button(ClickableObject):
+    turtle: Turtle
+    function: Optional[Callable[[], None]]
+    image: str
+    animation_image: str
+
     def __init__(self, x: int, y: int, image_name: str):
         self.turtle = Turtle()
         setup_turtle(self.turtle)
@@ -26,10 +35,13 @@ class Button(ClickableObject):
     def hide(self) -> None:
         self.clickable = False
         self.turtle.ht()
-    
+
     def clicked(self) -> None:
         self.clickable = False
         self.turtle.shape(self.animation_image)
         sleep(0.1)
         self.turtle.ht()
-        self.function()
+        if self.function is None:
+            print('None, not calling the function')
+        else:
+            self.function()

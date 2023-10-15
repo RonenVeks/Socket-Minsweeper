@@ -1,4 +1,6 @@
-from Handler import *
+from Handler import ScreensHandler, Screen, ButtonsHandler
+from Window import window
+from turtle import mainloop
 import socket
 
 SERVER_IP = "127.0.0.1"
@@ -18,7 +20,7 @@ def f_start_button() -> None:
     server_address = (SERVER_IP, SERVER_PORT)
     try:
         sock.connect(server_address)
-    except Exception as e:
+    except Exception:
         print("Failed connecting to server")
         exit()
     print("connected")
@@ -37,7 +39,7 @@ def f_size_9x9_button() -> None:
 def initialize_button_functions():
     ButtonsHandler.start_button.function = f_start_button
     ButtonsHandler.exit_button.function = f_exit_button
-    ButtonsHandler.size_9x9_button.fucntion = f_size_9x9_button
+    ButtonsHandler.size_9x9_button.function = f_size_9x9_button
 
 def main() -> None:
     global current_screen
@@ -48,10 +50,11 @@ def main() -> None:
 if __name__ == '__main__':
     main()
 
-def click(x: int, y: int) -> None:
+def click(x: float, y: float) -> None:
     global current_screen
     for button in current_screen.buttons:
-        if button.click_check(x, y): button.clicked()
+        if button.click_check(x, y):
+            button.clicked()
 
 window.onclick(click)
 
