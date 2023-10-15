@@ -1,4 +1,6 @@
-from Handler import *
+from Handler import ScreensHandler, Screen, ButtonsHandler
+from Window import window
+from turtle import mainloop
 import socket
 
 SERVER_IP = "127.0.0.1"
@@ -18,7 +20,7 @@ def f_start_button() -> None:
     server_address = (SERVER_IP, SERVER_PORT)
     try:
         sock.connect(server_address)
-    except Exception as e:
+    except Exception:
         print("Failed connecting to server")
         exit()
     print("connected")

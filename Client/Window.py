@@ -1,4 +1,4 @@
-from turtle import Screen, Turtle, mainloop
+from turtle import Screen, Turtle
 from abc import ABC
 
 window = Screen();

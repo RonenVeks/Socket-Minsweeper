@@ -1,4 +1,4 @@
-from Window import *
+from Window import ClickableObject, window, setup_turtle, Turtle
 from PIL import Image
 from time import sleep
 
@@ -26,7 +26,7 @@ class Button(ClickableObject):
     def hide(self) -> None:
         self.clickable = False
         self.turtle.ht()
-    
+
     def clicked(self) -> None:
         self.clickable = False
         self.turtle.shape(self.animation_image)

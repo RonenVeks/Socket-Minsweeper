@@ -1,4 +1,4 @@
-from Screen import *
+from Screen import Button, Screen
 
 class ButtonsHandler:
     #Starting screen

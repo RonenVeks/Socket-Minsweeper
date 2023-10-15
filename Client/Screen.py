@@ -1,4 +1,5 @@
-from Button import *
+from Button import Button
+from Window import window
 from typing import List
 
 class Screen:
